@@ -1,1 +1,3 @@
-foo: bar
+on: .
+files:
+- hello.txt.example:hello.txt
