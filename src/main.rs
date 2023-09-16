@@ -16,10 +16,10 @@ fn main() {
     match main_arg.as_str() {
         "init" => {
             let filename = String::from("config.yml");
-            let initializer = Initializer::new(filename);
+            let initializer = Initializer::new(filename.clone());
             Logger::init_start();
             match initializer.create_yml(None) {
-                Ok(_) => Logger::init_succes(None),
+                Ok(_) => Logger::init_success(&filename, None),
                 Err(err) => println!("{}", err),
             };
         }
