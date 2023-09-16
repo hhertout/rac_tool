@@ -2,7 +2,7 @@ use std::env;
 use std::mem;
 use std::process;
 
-use init::Initializer;
+use initializer::Initializer;
 
 pub mod logger;
 

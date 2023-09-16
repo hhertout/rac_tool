@@ -4,7 +4,7 @@ pub struct Logger;
 
 impl Logger {
     pub fn error_file_not_found() {
-        println!("Error : config file path provide is wrong");
+        println!("Error : configuration file not found");
         process::exit(1)
     }
 }

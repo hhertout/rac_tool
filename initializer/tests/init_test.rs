@@ -1,4 +1,4 @@
-use init::Initializer;
+use initializer::Initializer;
 use schema::Schema;
 use std::fs;
 

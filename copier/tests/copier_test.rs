@@ -1,5 +1,5 @@
 use copier::Copier;
-use init::Initializer;
+use initializer::Initializer;
 use schema::Schema;
 
 fn create_config() -> Initializer {

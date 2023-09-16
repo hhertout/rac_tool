@@ -6,7 +6,7 @@ version = 3
 name = "copier"
 version = "0.1.0"
 dependencies = [
- "init",
+ "initializer",
  "schema",
  "serde",
  "serde_yaml",
@@ -23,7 +23,7 @@ name = "fs_rust"
 version = "0.1.0"
 dependencies = [
  "copier",
- "init",
+ "initializer",
  "schema",
  "serde",
  "serde_yaml",
@@ -46,7 +46,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "init"
+name = "initializer"
 version = "0.1.0"
 dependencies = [
  "schema",
