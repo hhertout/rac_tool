@@ -19,7 +19,7 @@ fn test_write_yaml() {
 
 #[test]
 fn test_read_yaml() {
-    let base_url = String::from("tests/specs/");
+    let base_url = String::from("tests/specs/yaml/");
     let content = std::fs::read_to_string(base_url + "test.yml").expect("Error : File not found");
     assert_eq!(content, "foo: bar");
 
