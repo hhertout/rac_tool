@@ -78,5 +78,6 @@ fn test_dir() -> std::io::Result<()> {
 
 #[test]
 fn visit_dir_test() {
+    // TODO - test this
     let path = Path::new("./tests");
 }

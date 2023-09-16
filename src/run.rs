@@ -47,6 +47,7 @@ impl Runner {
                                     let _ = &self.copier.run_copy(file_split[0], file_split[1]);
                                 }
                             }
+                            // TODO - made this work for all dir
                             //let _ = self.visit_dir(&entry.path(), schema);
                         }
                     }
