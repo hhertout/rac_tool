@@ -40,7 +40,6 @@ struct Res {
 #[test]
 fn test_yml() {
     let content = "on: .\nfiles:\n  - text.txt.example:text.txt\n".to_owned();
-    println!("{:?}", content);
     let deserialized: Res = serde_yaml::from_str(&content).unwrap();
     let split: Vec<&str> = deserialized.files[0].split(":").collect();
 
