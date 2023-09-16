@@ -22,6 +22,7 @@ impl Copier {
 
         return parsed_content;
     }
+
     pub fn run_copy(&self, from: &str, to: &str) {
         let result = fs::copy(from, to);
         match result {
