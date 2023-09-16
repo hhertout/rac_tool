@@ -1,2 +1,5 @@
 /target
-./config.yml
+**/*/target
+**/*/config.yml
+.vs_code
+config.yml

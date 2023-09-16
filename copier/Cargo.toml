@@ -1,0 +1,14 @@
+[package]
+name = "copier"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "copier"
+
+[dependencies]
+schema = { path = "../schema" }
+initializer = { path = "../initializer" }
+logger = { path = "../logger" }
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9"

@@ -1,9 +1,7 @@
+use logger::Logger;
+use schema::Schema;
 use std::fs::File;
 use std::io::Write;
-
-use self::schema::Schema;
-
-pub mod schema;
 
 pub struct Initializer {
     pub filename: String,
@@ -21,7 +19,10 @@ impl Initializer {
         let yaml = serde_yaml::to_string(&self.schema);
         match yaml {
             Ok(result) => result,
-            Err(err) => panic!("Error : Convertion to yaml failed. {}", err),
+            Err(err) => {
+                Logger::yml_parse_failed();
+                panic!("{}", err);
+            }
         }
     }
 
@@ -31,9 +32,13 @@ impl Initializer {
             Some(dest) => dest.to_owned() + self.filename.as_str(),
             None => String::from("./") + self.filename.as_str(),
         };
+        // TODO - Create the folder if not exist
         let mut file = match File::create(dest) {
             Ok(file) => file,
-            Err(err) => panic!("Error : Failed to create file. {}", err),
+            Err(err) => {
+                Logger::create_file_failure();
+                panic!("{}", err);
+            }
         };
         file.write_all(yaml.as_bytes())
     }
