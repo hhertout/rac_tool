@@ -3,7 +3,11 @@ name = "fs_rust"
 version = "0.1.0"
 edition = "2021"
 
+[workspace]
+members = [".", "./init/", "./copier/"]
+
 [dependencies]
-init = {path = "./init" }
+init = { path = "./init" }
+copier = { path = "./copier" }
 serde = { version = "1.0", features = ["derive"] }
 serde_yaml = "0.9"
