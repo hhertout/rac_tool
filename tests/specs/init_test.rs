@@ -1,6 +1,6 @@
 use std::fs;
 
-use init::Initializer;
+use init::{Initializer, schema::Schema};
 
 #[test]
 pub fn create_yaml() {
@@ -12,4 +12,7 @@ pub fn create_yaml() {
     let path = "./tests/specs/yaml/".to_owned() + &filename;
     let content = fs::read_to_string(path);
     assert!(content.is_ok());
+    let c = content.unwrap();
+    let obj: Schema = serde_yaml::from_str(&c).unwrap();
+    assert_eq!(obj, initializer.schema)
 }
