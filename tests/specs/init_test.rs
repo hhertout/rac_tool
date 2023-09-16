@@ -4,7 +4,7 @@ use init::Initializer;
 
 #[test]
 pub fn create_yaml() {
-    let filename = String::from("config.yml");
+    let filename = String::from("config_test.yml");
     let initializer = Initializer::new(filename.clone());
     let result = initializer.create_yml(Some("./tests/specs/yaml/"));
     assert!(result.is_ok());
