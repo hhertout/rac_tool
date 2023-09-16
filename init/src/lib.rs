@@ -6,8 +6,8 @@ use self::schema::Schema;
 pub mod schema;
 
 pub struct Initializer {
-    filename: String,
-    schema: Schema,
+    pub filename: String,
+    pub schema: Schema,
 }
 
 impl Initializer {
