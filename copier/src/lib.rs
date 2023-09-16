@@ -1,8 +1,6 @@
 use schema::Schema;
 use std::fs;
 
-pub mod logger;
-
 use logger::Logger;
 
 pub struct Copier {

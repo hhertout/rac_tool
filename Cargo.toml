@@ -10,5 +10,6 @@ members = [".", "./initializer/", "./copier/"]
 initializer = { path = "./initializer" }
 copier = { path = "./copier" }
 schema = { path = "./schema" }
+logger = { path = "./logger" }
 serde = { version = "1.0", features = ["derive"] }
 serde_yaml = "0.9"

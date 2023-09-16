@@ -1,3 +1,4 @@
+use logger::Logger;
 use schema::Schema;
 use std::fs::File;
 use std::io::Write;
@@ -18,7 +19,10 @@ impl Initializer {
         let yaml = serde_yaml::to_string(&self.schema);
         match yaml {
             Ok(result) => result,
-            Err(err) => panic!("Error : Convertion to yaml failed. {}", err),
+            Err(err) => {
+                Logger::yml_parse_failed();
+                panic!("{}", err);
+            }
         }
     }
 
@@ -30,7 +34,10 @@ impl Initializer {
         };
         let mut file = match File::create(dest) {
             Ok(file) => file,
-            Err(err) => panic!("Error : Failed to create file. {}", err),
+            Err(err) => {
+                Logger::create_file_failure();
+                panic!("{}", err);
+            }
         };
         file.write_all(yaml.as_bytes())
     }
