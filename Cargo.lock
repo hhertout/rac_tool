@@ -6,6 +6,8 @@ version = 3
 name = "copier"
 version = "0.1.0"
 dependencies = [
+ "init",
+ "schema",
  "serde",
  "serde_yaml",
 ]
@@ -22,6 +24,7 @@ version = "0.1.0"
 dependencies = [
  "copier",
  "init",
+ "schema",
  "serde",
  "serde_yaml",
 ]
@@ -46,6 +49,7 @@ dependencies = [
 name = "init"
 version = "0.1.0"
 dependencies = [
+ "schema",
  "serde",
  "serde_yaml",
 ]
@@ -79,6 +83,14 @@ name = "ryu"
 version = "1.0.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1ad4cc8da4ef723ed60bced201181d83791ad433213d8c24efffda1eec85d741"
+
+[[package]]
+name = "schema"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_yaml",
+]
 
 [[package]]
 name = "serde"

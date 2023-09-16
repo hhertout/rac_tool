@@ -7,6 +7,6 @@ edition = "2021"
 name = "init"
 
 [dependencies]
+schema = { path = "../schema" }
 serde = { version = "1.0", features = ["derive"] }
 serde_yaml = "0.9"
-

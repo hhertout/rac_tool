@@ -1,6 +1,6 @@
+use init::Initializer;
+use schema::Schema;
 use std::fs;
-
-use init::{schema::Schema, Initializer};
 
 #[test]
 pub fn create_yaml() {

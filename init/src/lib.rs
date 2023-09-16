@@ -1,9 +1,6 @@
+use schema::Schema;
 use std::fs::File;
 use std::io::Write;
-
-use self::schema::Schema;
-
-pub mod schema;
 
 pub struct Initializer {
     pub filename: String,
