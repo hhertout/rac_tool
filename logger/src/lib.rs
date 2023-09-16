@@ -23,7 +23,7 @@ impl Logger {
         process::exit(1);
     }
     pub fn wrong_args() {
-        println!("{}", "Error : You provide a wrong arg".red());
+        println!("{}", "Error : You provide a wrong argument".red());
         process::exit(1);
     }
     pub fn error_file_not_found() {
