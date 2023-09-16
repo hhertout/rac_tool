@@ -32,6 +32,7 @@ impl Initializer {
             Some(dest) => dest.to_owned() + self.filename.as_str(),
             None => String::from("./") + self.filename.as_str(),
         };
+        // TODO - Create the folder if not exist
         let mut file = match File::create(dest) {
             Ok(file) => file,
             Err(err) => {

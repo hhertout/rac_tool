@@ -22,5 +22,11 @@ impl Copier {
 
         return parsed_content;
     }
-    pub fn run() {}
+    pub fn run_copy(&self, from: &str, to: &str) {
+        let result = fs::copy(from, to);
+        match result {
+            Ok(_) => Logger::copy_success(from, to),
+            Err(err) => println!("{} => Copy failed : {}", from, err),
+        }
+    }
 }

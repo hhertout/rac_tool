@@ -36,4 +36,7 @@ impl Logger {
     pub fn create_file_failure() {
         println!("{}", "Error : Failed to create file.".red())
     }
+    pub fn copy_success(from: &str, to: &str) {
+        println!("Successfully cpoy {} to {}", from, to);
+    }
 }
