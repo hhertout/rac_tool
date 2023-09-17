@@ -4,7 +4,12 @@ copy:
   - hello.txt.example:hello.txt
 replace:
   global:
-  - hello world:hello mom
+  - hello mom:hello mom
+  target:
+  - file_name: hello.txt
+    content: hello mom:hello mom
+  - file_name: dir/example/hello.txt
+    content: hello mom:hello mom
 ignored_dir:
 - /.git/
 - /node_modules/

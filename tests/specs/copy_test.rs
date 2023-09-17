@@ -6,6 +6,7 @@ use fs_rust::runner::Runner;
 fn visit_dir_test_with_ignored_path() {
     let _ = fs::remove_file("./tests/playground/random/hello_world.txt");
     let _ = fs::remove_file("./tests/playground/hello.txt");
+    let _ = fs::remove_file("./tests/playground/ignored/hello.txt");
     let mut runner = Runner::new("./tests/playground/config_test.yml".to_owned());
     runner.run();
 
