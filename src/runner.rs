@@ -30,11 +30,11 @@ impl Runner {
                 match entry {
                     Ok(entry) => {
                         let path = entry.path();
-                        let files = &schema.files;
                         let entry_path = path.as_os_str().to_str().unwrap();
                         if self.is_dir_is_ignored(entry_path) {
                             continue;
                         };
+                        let files = &schema.files;
                         for file in files {
                             let file_split: Vec<&str> = file.split(":").collect();
                             if entry_path.contains(file_split[0]) {
