@@ -2,6 +2,9 @@ on: .
 copy:
   files:
   - hello.txt.example:hello.txt
+replace:
+  global:
+  - hello world:hello mom
 ignored_dir:
 - /.git/
 - /node_modules/

@@ -1,19 +1,23 @@
+use copier::file_copier::FileCopier;
+use copier::replacer::Replacer;
+use copier::YamlParser;
 use std::io::Result;
-use std::{fs::read_dir, path::Path};
+use std::{fs, path::Path};
 
-use copier::Copier;
 use logger::Logger;
 use schema::Schema;
 
 pub struct Runner {
-    copier: Copier,
+    copier: FileCopier,
+    replacer: Replacer,
     schema: Option<Schema>,
 }
 
 impl Runner {
     pub fn new(filename: String) -> Runner {
         Runner {
-            copier: Copier::new(filename),
+            copier: FileCopier::new(filename.clone()),
+            replacer: Replacer::new(filename.clone()),
             schema: None,
         }
     }
@@ -24,17 +28,51 @@ impl Runner {
         if schema.copy.is_some() {
             self.copy();
         }
+        if schema.replace.is_some() {
+            self.replace();
+        }
     }
 
     pub fn copy(&self) {
         let schema = self.schema.clone().expect("Error: Empty schema");
         let dir = Path::new(&schema.on);
-        let _ = self.visit_dir(dir, &schema);
+        let _ = self.visit_dir_and_copy(dir, &schema);
     }
 
-    pub fn visit_dir(&self, path: &Path, schema: &Schema) -> Result<()> {
+    pub fn replace(&self) {
+        let schema = self.schema.clone().expect("Error: Empty schema");
+        let dir = Path::new(&schema.on);
+        let _ = self.visit_dir_and_replace(dir, &schema);
+    }
+
+    pub fn visit_dir_and_replace(&self, path: &Path, schema: &Schema) -> Result<()> {
         if path.is_dir() {
-            for entry in read_dir(path)? {
+            for entry in fs::read_dir(path)? {
+                match entry {
+                    Ok(entry) => {
+                        let path = entry.path();
+                        let entry_path = path.as_os_str().to_str().unwrap();
+                        if self.is_dir_is_ignored(entry_path) {
+                            continue;
+                        };
+                        let replace = schema.replace.clone().unwrap();
+                        for sentence in replace.global {
+                            let _ = self.replacer.run_replace(sentence, entry_path);
+                        }
+                        let _ = self.visit_dir_and_replace(&path, schema);
+                    }
+                    Err(_) => {
+                        Logger::dir_unavailable();
+                    }
+                }
+            }
+        }
+        Ok(())
+    }
+
+    pub fn visit_dir_and_copy(&self, path: &Path, schema: &Schema) -> Result<()> {
+        if path.is_dir() {
+            for entry in fs::read_dir(path)? {
                 match entry {
                     Ok(entry) => {
                         let path = entry.path();
@@ -51,7 +89,7 @@ impl Runner {
                                 let _ = &self.copier.run_copy(entry_path, &result_file_name);
                             }
                         }
-                        let _ = self.visit_dir(&entry.path(), schema);
+                        let _ = self.visit_dir_and_copy(&path, schema);
                     }
                     Err(_) => {
                         Logger::dir_unavailable();
@@ -63,6 +101,9 @@ impl Runner {
     }
 
     fn is_dir_is_ignored(&self, path: &str) -> bool {
+        if path == self.copier.config_file_path {
+            return true
+        }
         match self.schema.clone() {
             Some(schema) => match schema.ignored_dir {
                 Some(ignored_dir) => {

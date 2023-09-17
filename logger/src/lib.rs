@@ -44,10 +44,23 @@ impl Logger {
         println!("[{}] : Error copying {}", "Copy failed".red(), from);
     }
     pub fn invalid_config_file() {
-        println!("{}", "Error : your configuration file is not valid. Fix it and try again.".red());
+        println!(
+            "{}",
+            "Error : your configuration file is not valid. Fix it and try again.".red()
+        );
         process::exit(1)
     }
     pub fn dir_unavailable() {
         println!("{}", "Cannot read this directory".blue());
+    }
+    pub fn string_successfully_replaced(path: &str) {
+        println!(
+            "[{}] : String located on {} successfully replaced",
+            "Replace".green(),
+            path
+        );
+    }
+    pub fn string_replaced_err(path: &str) {
+        println!("[{}] : Error replacing {}", "Replace failed".red(), path);
     }
 }
