@@ -1,4 +1,5 @@
-use copier::Copier;
+use copier::file_copier::FileCopier;
+use copier::YamlParser;
 use initializer::Initializer;
 use schema::Schema;
 use std::fs;
@@ -16,7 +17,7 @@ fn create_config() -> Initializer {
 pub fn init() {
     create_config();
     let config_file_path = String::from("./tests/yaml/config_test.yml");
-    let copier = Copier::new(config_file_path.clone());
+    let copier = FileCopier::new(config_file_path.clone());
     assert_eq!(copier.config_file_path, config_file_path.clone());
 }
 
@@ -24,7 +25,7 @@ pub fn init() {
 pub fn copier_retrieve_schema() {
     let initializer = create_config();
     let config_file_path = String::from("./tests/yaml/config_test.yml");
-    let copier = Copier::new(config_file_path.clone());
+    let copier = FileCopier::new(config_file_path.clone());
     assert_eq!(copier.config_file_path, config_file_path.clone());
 
     let schema: Schema = copier.parse_yml();
@@ -36,7 +37,7 @@ pub fn copier_retrieve_schema() {
 pub fn copier_run_test() {
     let initializer = create_config();
     let config_file_path = String::from("./tests/yaml/config_test.yml");
-    let copier = Copier::new(config_file_path.clone());
+    let copier = FileCopier::new(config_file_path.clone());
     assert_eq!(copier.config_file_path, config_file_path.clone());
 
     let schema: Schema = copier.parse_yml();

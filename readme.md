@@ -1,6 +1,7 @@
 # Rust CLI tool
 
 ## Goal config file
+
 ```yaml
 # configuration file
 
@@ -25,3 +26,8 @@ ignored_dir:
   - /target/
 
 ```
+## Presentation
+
+## Installation
+
+## Getting started
