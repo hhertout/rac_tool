@@ -53,7 +53,7 @@ fn test_yml() {
 fn visit_dir_test() {
     let _ = fs::remove_file("./tests/playground/random/hello_world.txt");
     let _ = fs::remove_file("./tests/playground/hello.txt");
-    let runner = Runner::new("./tests/playground/config_test.yml".to_owned());
+    let mut runner = Runner::new("./tests/playground/config_test.yml".to_owned());
     runner.run();
 
     let first_file = fs::metadata("./tests/playground/hello.txt");

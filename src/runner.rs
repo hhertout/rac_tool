@@ -6,17 +6,20 @@ use schema::Schema;
 
 pub struct Runner {
     copier: Copier,
+    schema: Option<Schema>,
 }
 
 impl Runner {
     pub fn new(filename: String) -> Runner {
         Runner {
             copier: Copier::new(filename),
+            schema: None,
         }
     }
 
-    pub fn run(&self) {
-        let schema: Schema = self.copier.parse_yml();
+    pub fn run(&mut self) {
+        self.schema = Some(self.copier.parse_yml());
+        let schema = self.schema.clone().expect("empty schema");
         let dir = Path::new(&schema.on);
         let _ = self.visit_dir(dir, &schema);
     }
@@ -29,6 +32,9 @@ impl Runner {
                         let path = entry.path();
                         let files = &schema.files;
                         let entry_path = path.as_os_str().to_str().unwrap();
+                        if self.is_dir_is_ignored(entry_path) {
+                            continue;
+                        };
                         for file in files {
                             let file_split: Vec<&str> = file.split(":").collect();
                             if entry_path.contains(file_split[0]) {
@@ -46,5 +52,25 @@ impl Runner {
             }
         }
         Ok(())
+    }
+
+    fn is_dir_is_ignored(&self, path: &str) -> bool {
+        match self.schema.clone() {
+            Some(schema) => {
+                let ignored_dir = schema.ingored_dir;
+                match ignored_dir {
+                    Some(ignored_dir) => {
+                        for dir in ignored_dir {
+                            if path.contains(&dir) {
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+                    None => false,
+                }
+            }
+            None => false,
+        }
     }
 }
