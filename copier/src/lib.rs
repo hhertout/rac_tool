@@ -27,7 +27,7 @@ impl Copier {
         let result = fs::copy(from, to);
         match result {
             Ok(_) => Logger::copy_success(from, to),
-            Err(err) => println!("{} => Copy failed : {}", from, err),
+            Err(_) => Logger::copy_failed(from),
         }
     }
 }

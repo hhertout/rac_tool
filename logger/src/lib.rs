@@ -27,7 +27,8 @@ impl Logger {
         process::exit(1);
     }
     pub fn error_file_not_found() {
-        println!("{}", "Error : configuration file not found".red());
+        println!("{}", "Error : configuration file not found.".red());
+        println!("{}", "To create it, run with `init` argument.".red());
         process::exit(1)
     }
     pub fn yml_parse_failed() {
@@ -37,6 +38,9 @@ impl Logger {
         println!("{}", "Error : Failed to create file.".red())
     }
     pub fn copy_success(from: &str, to: &str) {
-        println!("Successfully copy {} to {}", from, to);
+        println!("[{}] : {} to {}", "Copy".green(), from, to);
+    }
+    pub fn copy_failed(from: &str) {
+        println!("[{}] : Error copying {}", "Copy failed".red(), from);
     }
 }
