@@ -1,5 +1,6 @@
+use fs_rust::runner::Runner;
 use serde::{Deserialize, Serialize};
-use std::{fs::read_dir, path::Path};
+use std::fs;
 
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
 pub struct YamlTest {
@@ -49,35 +50,16 @@ fn test_yml() {
 }
 
 #[test]
-fn test_dir() -> std::io::Result<()> {
-    let ignored_dir: Vec<&str> = vec![
-        "./target",
-        "./.git",
-        "./github",
-        "./node_modules",
-        "./vendor",
-        "./public",
-    ];
-    let path = Path::new(".");
-    if path.is_dir() {
-        for entry in read_dir(path)? {
-            match entry {
-                Ok(entry) => {
-                    if !ignored_dir.contains(&entry.path().as_os_str().to_str().unwrap()) {
-                        println!("{:?}", entry.path().file_name().unwrap());
-                    }
-                }
-                Err(err) => {
-                    println!("{}", err)
-                }
-            }
-        }
-    }
-    Ok(())
-}
-
-#[test]
 fn visit_dir_test() {
-    // TODO - test this
-    let path = Path::new("./tests");
+    let _ = fs::remove_file("./tests/playground/random/hello_world.txt");
+    let _ = fs::remove_file("./tests/playground/hello.txt");
+    let runner = Runner::new("./tests/playground/config_test.yml".to_owned());
+    runner.run();
+
+    let first_file = fs::metadata("./tests/playground/hello.txt");
+    let second_file = fs::metadata("./tests/playground/random/hello_world.txt");
+    let error_file = fs::metadata("./tests/playground/random/error.txt");
+    assert!(first_file.is_ok());
+    assert!(second_file.is_ok());
+    assert!(error_file.is_err());
 }

@@ -1,0 +1,4 @@
+on: ./tests/
+files:
+    - hello.txt.example:hello.txt
+    - hello2.txt.example:hello_world.txt
