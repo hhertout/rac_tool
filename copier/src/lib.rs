@@ -18,9 +18,13 @@ impl Copier {
             Logger::error_file_not_found();
         }
         let content_unwrap = content.unwrap();
-        let parsed_content: Schema = serde_yaml::from_str(&content_unwrap).unwrap();
-
-        return parsed_content;
+        match serde_yaml::from_str(&content_unwrap) {
+            Ok(parsed_content) => parsed_content,
+            Err(_) => {
+                Logger::invalid_config_file();
+                panic!("Process finished")
+            },
+        }
     }
 
     pub fn run_copy(&self, from: &str, to: &str) {

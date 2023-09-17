@@ -43,4 +43,8 @@ impl Logger {
     pub fn copy_failed(from: &str) {
         println!("[{}] : Error copying {}", "Copy failed".red(), from);
     }
+    pub fn invalid_config_file() {
+        println!("{}", "Error : your configuration file is not valid. Fix it and try again.".red());
+        process::exit(1)
+    }
 }

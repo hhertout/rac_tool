@@ -22,7 +22,7 @@ pub fn run_cli() {
             };
         }
         "run" => {
-            let runner = runner::Runner::new(filename.clone());
+            let mut runner = runner::Runner::new(filename.clone());
             runner.run();
         }
         _ => {
