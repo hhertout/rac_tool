@@ -1,7 +1,7 @@
 on: .
 files:
 - hello.txt.example:hello.txt
-ingored_dir:
+ignored_dir:
 - /.git/
 - /node_modules/
 - /vendor/
