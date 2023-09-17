@@ -28,7 +28,7 @@ replace:
     - file_name: dir/example/hello.txt
       content: hello world:hello mom
 
-# ignore directory for all process
+# ignore directory during all the process
 ignored_dir:
   - /.git/
   - /tests/
