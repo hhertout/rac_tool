@@ -56,20 +56,17 @@ impl Runner {
 
     fn is_dir_is_ignored(&self, path: &str) -> bool {
         match self.schema.clone() {
-            Some(schema) => {
-                let ignored_dir = schema.ingored_dir;
-                match ignored_dir {
-                    Some(ignored_dir) => {
-                        for dir in ignored_dir {
-                            if path.contains(&dir) {
-                                return true;
-                            }
+            Some(schema) => match schema.ignored_dir {
+                Some(ignored_dir) => {
+                    for dir in ignored_dir {
+                        if path.contains(&dir) {
+                            return true;
                         }
-                        return false;
                     }
-                    None => false,
+                    return false;
                 }
-            }
+                None => false,
+            },
             None => false,
         }
     }

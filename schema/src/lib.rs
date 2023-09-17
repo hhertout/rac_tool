@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 pub struct Schema {
     pub on: String,
     pub files: Vec<String>,
-    pub ingored_dir: Option<Vec<String>>,
+    pub ignored_dir: Option<Vec<String>>,
 }
 
 impl Schema {
@@ -12,7 +12,7 @@ impl Schema {
         Schema {
             on: String::from("."),
             files: vec![String::from("hello.txt.example:hello.txt")],
-            ingored_dir: Some(vec![
+            ignored_dir: Some(vec![
                 String::from("/.git/"),
                 String::from("/node_modules/"),
                 String::from("/vendor/"),
