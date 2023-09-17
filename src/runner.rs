@@ -2,6 +2,7 @@ use std::io::Result;
 use std::{fs::read_dir, path::Path};
 
 use copier::Copier;
+use logger::Logger;
 use schema::Schema;
 
 pub struct Runner {
@@ -19,7 +20,14 @@ impl Runner {
 
     pub fn run(&mut self) {
         self.schema = Some(self.copier.parse_yml());
-        let schema = self.schema.clone().expect("empty schema");
+        let schema = self.schema.as_ref().unwrap();
+        if schema.copy.is_some() {
+            self.copy();
+        }
+    }
+
+    pub fn copy(&self) {
+        let schema = self.schema.clone().expect("Error: Empty schema");
         let dir = Path::new(&schema.on);
         let _ = self.visit_dir(dir, &schema);
     }
@@ -30,12 +38,12 @@ impl Runner {
                 match entry {
                     Ok(entry) => {
                         let path = entry.path();
-                        let files = &schema.files;
                         let entry_path = path.as_os_str().to_str().unwrap();
                         if self.is_dir_is_ignored(entry_path) {
                             continue;
                         };
-                        for file in files {
+                        let copy = schema.copy.clone().unwrap();
+                        for file in copy.files {
                             let file_split: Vec<&str> = file.split(":").collect();
                             if entry_path.contains(file_split[0]) {
                                 let result_file_name =
@@ -45,8 +53,8 @@ impl Runner {
                         }
                         let _ = self.visit_dir(&entry.path(), schema);
                     }
-                    Err(err) => {
-                        println!("{}", err)
+                    Err(_) => {
+                        Logger::dir_unavailable();
                     }
                 }
             }
