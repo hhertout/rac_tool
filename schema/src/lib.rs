@@ -1,3 +1,5 @@
+use std::vec;
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize, PartialEq, Clone)]
@@ -40,12 +42,29 @@ impl Copy {
 #[derive(Debug, Deserialize, Serialize, PartialEq, Clone)]
 pub struct Replace {
     pub global: Vec<String>,
+    pub target: Vec<Target>,
 }
 
 impl Replace {
     fn new() -> Replace {
         Replace {
             global: vec![String::from("hello world:hello mom")],
+            target: vec![
+                Target {
+                    file_name: "hello.txt".to_owned(),
+                    content: "hello world:hello mom".to_owned(),
+                },
+                Target {
+                    file_name: "dir/example/hello.txt".to_owned(),
+                    content: "hello world:hello mom".to_owned(),
+                },
+            ],
         }
     }
+}
+
+#[derive(Debug, Deserialize, Serialize, PartialEq, Clone)]
+pub struct Target {
+    file_name: String,
+    content: String,
 }
