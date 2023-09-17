@@ -25,3 +25,10 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build
         run: cargo build --verbose
+  build_release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build for release
+        run: cargo build --release --verbose
