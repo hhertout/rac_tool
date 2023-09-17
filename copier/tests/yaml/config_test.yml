@@ -1,6 +1,7 @@
 on: .
-files:
-- hello.txt.example:hello.txt
+copy:
+  files:
+  - hello.txt.example:hello.txt
 ignored_dir:
 - /.git/
 - /node_modules/

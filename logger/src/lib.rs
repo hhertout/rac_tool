@@ -47,4 +47,7 @@ impl Logger {
         println!("{}", "Error : your configuration file is not valid. Fix it and try again.".red());
         process::exit(1)
     }
+    pub fn dir_unavailable() {
+        println!("{}", "Cannot read this directory".blue());
+    }
 }
