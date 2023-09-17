@@ -56,8 +56,10 @@ impl Runner {
                             continue;
                         };
                         let replace = schema.replace.clone().unwrap();
-                        for sentence in replace.global {
-                            let _ = self.replacer.run_replace(sentence, entry_path);
+                        if replace.global.is_some() {
+                            for sentence in replace.global.unwrap() {
+                                let _ = self.replacer.run_replace(sentence, entry_path);
+                            }
                         }
                         let _ = self.visit_dir_and_replace(&path, schema);
                     }
@@ -102,7 +104,7 @@ impl Runner {
 
     fn is_dir_is_ignored(&self, path: &str) -> bool {
         if path == self.copier.config_file_path {
-            return true
+            return true;
         }
         match self.schema.clone() {
             Some(schema) => match schema.ignored_dir {

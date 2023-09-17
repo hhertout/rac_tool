@@ -41,24 +41,24 @@ impl Copy {
 
 #[derive(Debug, Deserialize, Serialize, PartialEq, Clone)]
 pub struct Replace {
-    pub global: Vec<String>,
-    pub target: Vec<Target>,
+    pub global: Option<Vec<String>>,
+    pub target: Option<Vec<Target>>,
 }
 
 impl Replace {
     fn new() -> Replace {
         Replace {
-            global: vec![String::from("hello world:hello mom")],
-            target: vec![
+            global: Some(vec![String::from("hello mom:hello mom")]),
+            target: Some(vec![
                 Target {
                     file_name: "hello.txt".to_owned(),
-                    content: "hello world:hello mom".to_owned(),
+                    content: "hello mom:hello mom".to_owned(),
                 },
                 Target {
                     file_name: "dir/example/hello.txt".to_owned(),
-                    content: "hello world:hello mom".to_owned(),
+                    content: "hello mom:hello mom".to_owned(),
                 },
-            ],
+            ]),
         }
     }
 }

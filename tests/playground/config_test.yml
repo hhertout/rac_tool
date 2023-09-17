@@ -6,6 +6,6 @@ copy:
     - hello2.txt.example:hello_world.txt
 replace:
   global:
-    - hello world:hello mom
+    - hello mom:hello mom
 ignored_dir:
   - /ignored/
