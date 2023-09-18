@@ -1,4 +1,19 @@
-# Rust CLI tool
+<p align="center">
+  <h1 align="center">RAC - Rust Auto Copy</h1>
+    <p align="center">An app for auto-managing your repo file !</p>
+</p>
+
+<p align="center">
+    <a href="https://github.com/hhertout/rac_tool/graphs/contributors" alt="Contributors">
+        <img src="https://img.shields.io/github/contributors/badges/shields" />
+    </a>
+    <a href="https://github.com/hhertout/rac_tool/actions">
+      <img alt="Tests Passing" src="https://github.com/hhertout/rac_tool/actions/workflows/rust.yml/badge.svg" />
+    </a>
+    <a href="https://coveralls.io/github/badges/shields">
+        <img src="https://img.shields.io/coveralls/github/badges/shields" alt="coverage">
+    </a>
+</p>
 
 ## Configuration
 
@@ -9,7 +24,7 @@
 on: .
 
 copy:
-  # List all files to copy 
+  # List all files to copy
   # - `base:dest`
   files:
     - hello.txt.example:hello.txt
@@ -21,7 +36,7 @@ replace:
 
   # Target files by name. By default, target all directory.
   # If you want to target a specifiq file, you must specify the correct path.
-  # content: 
+  # content:
   #     - `past:future`
   target:
     - file_name: hello.txt
