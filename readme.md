@@ -4,14 +4,10 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/hhertout/rac_tool/graphs/contributors" alt="Contributors">
-        <img src="https://img.shields.io/github/contributors/badges/shields" />
-    </a>
+    <img src="https://img.shields.io/badge/version-1.0-blue" alt="version">
+    <img src="https://img.shields.io/github/contributors/hhertout/rac_tool" />
     <a href="https://github.com/hhertout/rac_tool/actions">
       <img alt="Tests Passing" src="https://github.com/hhertout/rac_tool/actions/workflows/rust.yml/badge.svg" />
-    </a>
-    <a href="https://coveralls.io/github/badges/shields">
-        <img src="https://img.shields.io/coveralls/github/badges/shields" alt="coverage">
     </a>
 </p>
 
