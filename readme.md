@@ -1,6 +1,6 @@
 # Rust CLI tool
 
-## Goal config file
+## Configuration
 
 ```yaml
 # configuration file

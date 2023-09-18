@@ -8,6 +8,7 @@ use logger::Logger;
 use schema::Schema;
 
 pub struct Runner {
+    config_file_name: String,
     copier: FileCopier,
     replacer: Replacer,
     schema: Option<Schema>,
@@ -16,6 +17,7 @@ pub struct Runner {
 impl Runner {
     pub fn new(filename: String) -> Runner {
         Runner {
+            config_file_name: filename.clone(),
             copier: FileCopier::new(filename.clone()),
             replacer: Replacer::new(filename.clone()),
             schema: None,
@@ -61,6 +63,15 @@ impl Runner {
                                 let _ = self.replacer.run_replace(sentence, entry_path);
                             }
                         }
+                        if replace.target.is_some() {
+                            for file in replace.target.unwrap() {
+                                if entry_path.contains(&file.file_name) {
+                                    for sentence in file.content {
+                                        let _ = self.replacer.run_replace(sentence, entry_path);
+                                    }
+                                }
+                            }
+                        }
                         let _ = self.visit_dir_and_replace(&path, schema);
                     }
                     Err(_) => {
@@ -103,7 +114,7 @@ impl Runner {
     }
 
     fn is_dir_is_ignored(&self, path: &str) -> bool {
-        if path == self.copier.config_file_path {
+        if path.contains(&self.config_file_name) {
             return true;
         }
         match self.schema.clone() {

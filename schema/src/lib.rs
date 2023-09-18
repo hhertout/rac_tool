@@ -68,6 +68,6 @@ impl Replace {
 
 #[derive(Debug, Deserialize, Serialize, PartialEq, Clone)]
 pub struct Target {
-    file_name: String,
-    content: Vec<String>,
+    pub file_name: String,
+    pub content: Vec<String>,
 }

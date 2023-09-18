@@ -7,5 +7,9 @@ copy:
 replace:
   global:
     - hello mom:hello mom
+  target:
+    - file_name: targeted_file.txt
+      content:
+        - sentence to replace:sentence replaced
 ignored_dir:
   - /ignored/
