@@ -11,7 +11,29 @@
     </a>
 </p>
 
-## Configuration
+## Presentation
+
+
+RAC is a tool allowing you to automate file copying, automatic replacement of certain textual parts of a file.
+
+All are the process is set from a yml configuration file.
+
+You can configure it for processing globaly, or more specificly by targeting a specifiq file name, or file path.
+
+## Getting started
+
+### Initialization
+Install the executable file in your working directory.
+
+To create the configuration file, run :
+
+```bash
+./<exec_name> init
+```
+
+It create the config.yml in your current directory.
+
+### Configuration
 
 ```yaml
 # configuration file
@@ -52,8 +74,14 @@ ignored_dir:
   - /target/
 ```
 
-## Presentation
+### Running the tool
+
+Simply run
+
+```bash
+./<exec_file> run
+```
 
 ## Installation
 
-## Getting started
+-- 
