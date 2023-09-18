@@ -21,12 +21,16 @@ replace:
 
   # Target files by name. By default, target all directory.
   # If you want to target a specifiq file, you must specify the correct path.
-  # - content: `past:future`
+  # content: 
+  #     - `past:future`
   target:
     - file_name: hello.txt
-      content: hello mom:hello mom
+      content:
+        - hello mom:hello mom
+        - string to replace:string replaced
     - file_name: dir/example/hello.txt
-      content: hello mom:hello mom
+      content:
+        - hello mom:hello mom
 
 # ignore directory during all the process
 ignored_dir:

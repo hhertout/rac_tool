@@ -52,11 +52,14 @@ impl Replace {
             target: Some(vec![
                 Target {
                     file_name: "hello.txt".to_owned(),
-                    content: "hello mom:hello mom".to_owned(),
+                    content: vec![
+                        "hello mom:hello mom".to_owned(),
+                        "string to replace:string replaced".to_owned(),
+                    ],
                 },
                 Target {
                     file_name: "dir/example/hello.txt".to_owned(),
-                    content: "hello mom:hello mom".to_owned(),
+                    content: vec!["hello mom:hello mom".to_owned()],
                 },
             ]),
         }
@@ -66,5 +69,5 @@ impl Replace {
 #[derive(Debug, Deserialize, Serialize, PartialEq, Clone)]
 pub struct Target {
     file_name: String,
-    content: String,
+    content: Vec<String>,
 }
