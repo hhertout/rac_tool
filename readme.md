@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">RAC - Rust Auto Copy</h1>
+  <h1 align="center">RAT - Rust Auto-Copy Tool</h1>
     <p align="center">An app for auto-managing your repo file !</p>
 </p>
 
