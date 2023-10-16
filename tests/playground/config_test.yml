@@ -6,7 +6,7 @@ copy:
     - hello2.txt.example:hello_world.txt
 replace:
   global:
-    - hello mom:hello mom
+    - hello world:hello mom
   target:
     - file_name: targeted_file.txt
       content:
