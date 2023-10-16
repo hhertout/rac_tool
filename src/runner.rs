@@ -15,11 +15,11 @@ pub struct Runner {
 }
 
 impl Runner {
-    pub fn new(filename: String) -> Runner {
+    pub fn new(config_file: String) -> Runner {
         Runner {
-            config_file_name: filename.clone(),
-            copier: FileCopier::new(filename.clone()),
-            replacer: Replacer::new(filename.clone()),
+            config_file_name: config_file.clone(),
+            copier: FileCopier::new(config_file.clone()),
+            replacer: Replacer::new(config_file.clone()),
             schema: None,
         }
     }
@@ -65,7 +65,7 @@ impl Runner {
                         }
                         if replace.target.is_some() {
                             for file in replace.target.unwrap() {
-                                if entry_path.contains(&file.file_name) {
+                                if entry_path.ends_with(&file.file_name) {
                                     for sentence in file.content {
                                         let _ = self.replacer.run_replace(sentence, entry_path);
                                     }
