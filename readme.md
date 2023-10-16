@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">RAT - Rust Auto-Copy Tool</h1>
+  <h1 align="center">Rat - Auto-Copy Tool</h1>
     <p align="center">An app for auto-managing your repo file !</p>
 </p>
 
@@ -14,7 +14,7 @@
 ## Presentation
 
 
-RAC is a tool allowing you to automate file copying, automatic replacement of certain textual parts of a file.
+Rat is a tool allowing you to automate file copying, automatic replacement of certain textual parts of a file.
 
 All are the process is set from a yml configuration file.
 
