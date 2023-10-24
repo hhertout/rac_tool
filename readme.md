@@ -8,6 +8,7 @@
     <img src="https://img.shields.io/github/contributors/hhertout/rac_tool" />
     <a href="https://github.com/hhertout/rac_tool/actions">
       <img alt="Tests Passing" src="https://github.com/hhertout/rac_tool/actions/workflows/rust.yml/badge.svg" />
+      <img alt="Tests Passing" src="https://github.com/hhertout/rac_tool/actions/workflows/release.yml/badge.svg" />
     </a>
 </p>
 
