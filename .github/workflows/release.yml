@@ -1,0 +1,23 @@
+name: "🎁 Release"
+
+on:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Build"
+        run: cargo build --release
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+            repo_token: "${{ secrets.GITHUB_TOKEN }}"
+            prerelease: false
+            files: |
+              target/release/fs_rust
