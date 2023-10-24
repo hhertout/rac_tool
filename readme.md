@@ -59,7 +59,7 @@ replace:
   target:
     - file_name: hello.txt
       content:
-        - hello mom:hello mom
+        - hello world:hello mom
         - string to replace:string replaced
     - file_name: dir/example/hello.txt
       content:
