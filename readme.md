@@ -5,7 +5,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/version-1.0-blue" alt="version">
-    <img src="https://img.shields.io/github/contributors/hhertout/rac_tool" />
+    <img src="https://img.shields.io/github/v/release/hhertout/rat_tool.svg" />
     <a href="https://github.com/hhertout/rac_tool/actions">
       <img alt="Tests Passing" src="https://github.com/hhertout/rac_tool/actions/workflows/rust.yml/badge.svg" />
       <img alt="Tests Passing" src="https://github.com/hhertout/rac_tool/actions/workflows/release.yml/badge.svg" />
