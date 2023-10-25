@@ -1,4 +1,4 @@
-use fs_rust::runner::Runner;
+use rat::runner::Runner;
 use serde::{Deserialize, Serialize};
 use std::fs;
 

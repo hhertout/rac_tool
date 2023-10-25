@@ -67,18 +67,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "fs_rust"
-version = "0.1.0"
-dependencies = [
- "copier",
- "initializer",
- "logger",
- "schema",
- "serde",
- "serde_yaml",
-]
-
-[[package]]
 name = "hashbrown"
 version = "0.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -168,6 +156,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5267fca4496028628a95160fc423a33e8b2e6af8a5302579e322e4b520293cae"
 dependencies = [
  "proc-macro2",
+]
+
+[[package]]
+name = "rat"
+version = "0.1.0"
+dependencies = [
+ "copier",
+ "initializer",
+ "logger",
+ "schema",
+ "serde",
+ "serde_yaml",
 ]
 
 [[package]]

@@ -1,6 +1,6 @@
 use std::fs;
 
-use fs_rust::runner::Runner;
+use rat::runner::Runner;
 
 #[test]
 fn visit_dir_test_with_ignored_path() {

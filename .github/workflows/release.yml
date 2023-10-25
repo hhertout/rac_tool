@@ -22,4 +22,4 @@ jobs:
             prerelease: false
             automatic_release_tag: latest
             files: |
-              target/release/fs_rust
+              target/release/rat
