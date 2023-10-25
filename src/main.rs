@@ -1,4 +1,4 @@
-use fs_rust::run_cli;
+use rat::run_cli;
 
 fn main() {
     run_cli()
