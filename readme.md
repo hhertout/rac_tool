@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">Rat - Auto-Copy Tool</h1>
+  <h1 align="center">RAT - Auto-Copy Tool</h1>
     <p align="center">An app for auto-managing your repo file !</p>
 </p>
 
@@ -15,11 +15,11 @@
 ## Presentation
 
 
-Rat is a tool allowing you to automate file copying, automatic replacement of certain textual parts of a file.
+RAT is a tool allowing you to automate file copying, automatic replacement of certain textual parts of a file.
 
 All are the process is set from a yml configuration file.
 
-You can configure it for processing globaly, or more specificly by targeting a specifiq file name, or file path.
+You can configure it for processing globally, or more specifically by targeting a specific file name, or file path.
 
 ## Getting started
 
@@ -32,7 +32,7 @@ To create the configuration file, run :
 ./<exec_name> init
 ```
 
-It create the config.yml in your current directory.
+It creates the config.yml in your current directory.
 
 ### Configuration
 
@@ -85,4 +85,20 @@ Simply run
 
 ## Installation
 
--- 
+- Install globally : 
+```bash
+cargo install --path .
+```
+- Install with executable file :
+
+Build with ```cargo build --release``` and find the file in ```target/release/fs_rust``` or download the executable file from repository releases.
+
+## Contribution
+
+All ideas or help are welcome !
+
+If you want to add more functionality or fix some bugs, you can : 
+- Submit an issue of bugs or with your idea
+- Submit a pull request, to push your branch on the repository and submit a PR.
+
+Thanks for your contribution to this project.
