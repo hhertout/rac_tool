@@ -40,7 +40,7 @@ jobs:
       - name: Check Workspace Contents
         if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
-            ls -la /target/release
+            du -a target
       - name: Check Workspace Contents
         if: ${{ matrix.os == 'windows-latest' }}
         run: |
