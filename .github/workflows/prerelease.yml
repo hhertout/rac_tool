@@ -35,7 +35,7 @@ jobs:
 
       - name: Build for Linux
         if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: cargo build
+        run: cargo build --release --target-dir=/tmp
 
       - name: Check Workspace Contents
         if: ${{ matrix.os == 'ubuntu-latest' }}
