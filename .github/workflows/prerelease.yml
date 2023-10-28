@@ -1,11 +1,9 @@
-name: "🎁 Release"
+name: "📦 Pre-Release"
 
 on:
   push:
     branches:
       - "main"
-    tags:
-      - 'v*'
 
 jobs:
   release:
@@ -41,7 +39,9 @@ jobs:
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          files: |
-            target/release/rat.exe  # Exécutable Windows
-            target/release/rat     # Exécutable Linux
+            repo_token: "${{ secrets.GITHUB_TOKEN }}"
+            prerelease: true
+            automatic_release_tag: latest
+            files: |
+              target/release/rat.exe  # Exécutable Windows
+              target/release/rat     # Exécutable Linux
