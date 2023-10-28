@@ -6,50 +6,23 @@ on:
       - "main"
 
 jobs:
-  release:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ windows-latest, ubuntu-latest ]
-
+  build:
+    name: Build
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up MSVC
-        if: ${{ matrix.os == 'windows-latest' }}
-        uses: msys2/setup-msys2@v2
+      - uses: actions/checkout@master
+      - name: Compile
+        id: compile
+        uses: rust-build/rust-build.action@v1.4.4
         with:
-          architecture: x64
+          RUSTTARGET: x86_64-unknown-linux-musl
+          UPLOAD_MODE: none
 
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          override: true
-
-      - name: Build for Windows
-        if: ${{ matrix.os == 'windows-latest' }}
-        run: cargo build --target x86_64-pc-windows-msvc
-
-      - name: Build for Linux
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: cargo build --release --target-dir=/tmp
-
-      - name: Check Workspace Contents
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: |
-            du -a /tmp
-      - name: Check Workspace Contents
-        if: ${{ matrix.os == 'windows-latest' }}
-        run: |
-            dir
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
             repo_token: "${{ secrets.GITHUB_TOKEN }}"
             prerelease: true
             automatic_release_tag: latest
             files: |
-              target/release/rat.exe  # Exécutable Windows
-              target/release/rat     # Exécutable Linux
+              ${{ steps.compile.outputs.BUILT_ARCHIVE }}
+              ${{ steps.compile.outputs.BUILT_CHECKSUM }}
