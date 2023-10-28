@@ -38,12 +38,13 @@ jobs:
         run: cargo build --release
 
       - name: Check Workspace Contents
+        if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
-          if [ "${{ runner.os }}" == "Linux" ]; then
-            ls -la
-          elif [ "${{ runner.os }}" == "Windows" ]; then
-            dir
-          fi
+            ls -la /target/release
+      - name: Check Workspace Contents
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+            dir *.exe /s
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
