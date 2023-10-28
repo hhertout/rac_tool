@@ -1,9 +1,6 @@
 name: "🎁 Release"
 
 on:
-  push:
-    branches:
-      - "main"
   create:
     tags:
       - 'v*'
@@ -43,7 +40,7 @@ jobs:
       - name: Check Workspace Contents
         run: |
           if [ "${{ runner.os }}" == "Linux" ]; then
-            ls -la
+            ls -la /target/release
           elif [ "${{ runner.os }}" == "Windows" ]; then
             dir
           fi
