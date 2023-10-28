@@ -45,7 +45,6 @@ jobs:
         if: ${{ matrix.os == 'windows-latest' }}
         run: |
             dir
-
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
             repo_token: "${{ secrets.GITHUB_TOKEN }}"
