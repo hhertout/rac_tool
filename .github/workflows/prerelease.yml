@@ -6,8 +6,8 @@ on:
       - "main"
 
 jobs:
-  build:
-    name: Build
+  pre-release:
+    name: Build & publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
