@@ -7,47 +7,28 @@ on:
 
 jobs:
   release:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ windows-latest, ubuntu-latest ]
-
+    name: Build & publish
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up MSVC
-        if: ${{ matrix.os == 'windows-latest' }}
-        uses: msys2/setup-msys2@v2
+      - uses: actions/checkout@master
+      - name: Compile
+        id: linux
+        uses: rust-build/rust-build.action@v1.4.4
         with:
-          architecture: x64
-
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
+          RUSTTARGET: x86_64-unknown-linux-musl
+          UPLOAD_MODE: none
+      - name: Compile
+        id: win
+        uses: rust-build/rust-build.action@v1.4.4
         with:
-          toolchain: stable
-          override: true
-
-      - name: Build for Windows
-        if: ${{ matrix.os == 'windows-latest' }}
-        run: cargo build --release --target x86_64-pc-windows-msvc
-
-      - name: Build for Linux
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: cargo build --release
-
-      - name: Check Workspace Contents
-        run: |
-          if [ "${{ runner.os }}" == "Linux" ]; then
-            ls -la /target/release
-          elif [ "${{ runner.os }}" == "Windows" ]; then
-            dir
-          fi
+          RUSTTARGET: x86_64-pc-windows-gnu
+          UPLOAD_MODE: none
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           files: |
-            target/release/rat.exe  # Exécutable Windows
-            target/release/rat     # Exécutable Linux
+            ${{ steps.win.outputs.BUILT_ARCHIVE }}
+            ${{ steps.win.outputs.BUILT_CHECKSUM }}
+            ${{ steps.linux.outputs.BUILT_ARCHIVE }}
+            ${{ steps.linux.outputs.BUILT_CHECKSUM }}
