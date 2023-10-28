@@ -38,7 +38,6 @@ jobs:
         run: cargo build
 
       - name: Check Workspace Contents
-        uses: actions/checkout@v3
         if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
             du -a target
@@ -46,7 +45,6 @@ jobs:
         if: ${{ matrix.os == 'windows-latest' }}
         run: |
             dir
-
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
             repo_token: "${{ secrets.GITHUB_TOKEN }}"
